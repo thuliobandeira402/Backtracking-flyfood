@@ -10,6 +10,8 @@ num_linhas = int(dimensoes[0])
 num_colunas = int(dimensoes[1])
 pontos = {}
 matriz = linhas[1:]
+entrega_rotas = {}
+menor_custo = float("inf")
 
 for i in range(num_linhas):
     valores = matriz[i].split()
@@ -52,4 +54,13 @@ for rota in rotas:
         custo_total += calculo_manhatan(ponto_atual, destino)
         ponto_atual = destino
     custo_total += calculo_manhatan(ponto_atual, origem)
+    if custo_total < menor_custo:
+        menor_custo = custo_total
+    rota_tupla = tuple(rota)
+    entrega_rotas[rota_tupla] = custo_total
     print(f"Rota: {rota}, Custo total: {custo_total}")
+
+rotas_minimas = [k for k, v in entrega_rotas.items() if v == menor_custo]
+
+print(f"Rotas com o menor valor: {rotas_minimas}")
+print(f"Menor valor: {menor_custo}")
