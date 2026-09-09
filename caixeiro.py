@@ -67,8 +67,14 @@ def gerar_passeios(cidades):
     backtrack([], cidades)
     return resultado
 
-gerar_passeios(entregas)
+def calcular_tempo(lista_cidades):
+    import time
+    inicio = time.time()
+    gerar_passeios(lista_cidades)
+    fim = time.time()
+    return f'O Tempo de Execução foi de: {(fim - inicio) / 60:.2f} minutos'
 
 print(  
+      f'{calcular_tempo(entregas)}\n', 
       f'O menor custo de rota foi: {menor_custo}\n'
       f'As melhores rotas foram: {melhores_rotas}')
