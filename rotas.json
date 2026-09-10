@@ -1,0 +1,12 @@
+{
+  "menor_custo": 18,
+  "melhores_rotas": [
+    "C B A I E H J F D G K",
+    "C B A D F I E H J G K",
+    "C B A D F E I H J G K",
+    "K G D F J H E I A B C",
+    "K G J H I E F D A B C",
+    "K G J H E I F D A B C"
+  ],
+  "tempo_execucao_minutos": 3.8
+}

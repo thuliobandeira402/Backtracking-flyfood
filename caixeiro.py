@@ -1,11 +1,9 @@
-entrada = """6 6
-A 0 B 0 C 0
-0 D 0 E 0 F
-0 0 G 0 H 0
-I 0 0 J 0 K
-0 L 0 0 0 0
-0 0 0 0 0 R
-"""
+from gerador_entrada import gerar_entrada
+import json
+import os
+
+entrada = gerar_entrada()
+
 linhas = [linha.strip() for linha in entrada.strip().splitlines() if linha.strip()]
 dimensoes = linhas[0].split()
 num_linhas = int(dimensoes[0])
@@ -26,7 +24,7 @@ entregas = list(pontos.keys())
 print(entregas)
 
 
-# MELHORES ROTAS E CUSTO 
+# MELHORES ROTAS E CUSTO
 menor_custo = float("inf")
 melhores_rotas = []
 
@@ -72,9 +70,24 @@ def calcular_tempo(lista_cidades):
     inicio = time.time()
     gerar_passeios(lista_cidades)
     fim = time.time()
-    return f'O Tempo de Execução foi de: {(fim - inicio) / 60:.2f} minutos'
+    duracao_minutos = (fim - inicio) / 60
+    return f'O Tempo de Execução foi de: {duracao_minutos:.2f} minutos', duracao_minutos
 
-print(  
-      f'{calcular_tempo(entregas)}\n', 
+mensagem_tempo, tempo_execucao_minutos = calcular_tempo(entregas)
+
+print(
+      f'{mensagem_tempo}\n',
       f'O menor custo de rota foi: {menor_custo}\n'
       f'As melhores rotas foram: {melhores_rotas}')
+
+# SALVAR RESULTADO EM JSON
+
+resultado = {
+    "menor_custo": menor_custo,
+    "melhores_rotas": [" ".join(rota) for rota in melhores_rotas],
+    "tempo_execucao_minutos": f"{round(tempo_execucao_minutos, 2)} minutos"
+}
+
+caminho_saida = os.path.join(os.path.dirname(__file__), "rotas.json")
+with open(caminho_saida, "w", encoding="utf-8") as arquivo:
+    json.dump(resultado, arquivo, ensure_ascii=False, indent=2)
