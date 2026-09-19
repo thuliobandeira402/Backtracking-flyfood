@@ -45,3 +45,12 @@ cd Backtracking-flyfood
 
 # Execute o script principal (ajuste conforme o seu ficheiro de entrada de matriz)
 python main.py
+
+👨‍💻 Autores
+Pedro Coutinho - pedro.coutinho@ufrpe.br
+
+Renato Rodrigues - renato.filho@ufrpe.br
+
+Taryk Melo - taryk.melo@ufrpe.br
+
+Thúlio Bandeira - thulio.roberto@ufrpe.br
